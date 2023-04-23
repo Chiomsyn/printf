@@ -6,5 +6,6 @@
 #include <stdlib.h>
 
 int _printf(const char *format, ...);
+int print_stream(char *buf, unsigned int count);
 
 #endif
