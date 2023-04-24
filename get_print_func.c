@@ -10,7 +10,7 @@
 int (*get_print_func(const char *n, int index))(va_list, char*, unsigned int)
 {
 	print_t pt[] = {
-		{"c", print_chr},{"s", print_str}, {NULL, NULL},
+		{"c", print_chr}, {"s", print_str}, {NULL, NULL},
 	};
 	int i = 0;
 

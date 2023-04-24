@@ -19,7 +19,7 @@ int _printf(const char *format, ...)
 		return (0);
 	if (!format || !tmp || (format[i] == '%' && !format[i + 1]))
 		return (-1);
-	while (format && format[i])
+	for (i = 0; format && format[i]; i++)
 	{
 		if (format[i] == '%')
 		{
@@ -40,13 +40,11 @@ int _printf(const char *format, ...)
 				}
 				else
 					chr_count += function(ptr, tmp, count);
-			}
-			i++;
+			}	i++;
 		} else
 			add_tmp_val(tmp, format[i], count), chr_count++;
 		for (count = chr_count; count > 1024; count -= 1024)
 			;
-		i++;
 	}
 	print_stream(tmp, count), free(tmp), va_end(ptr);
 	return (chr_count);
