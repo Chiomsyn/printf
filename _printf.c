@@ -8,26 +8,40 @@
  */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, count = 0;
+	unsigned int i = 0, count = 0, chr_count = 0;
 	va_list ptr;
 	char *tmp;
+	int (*function)(va_list, char *, unsigned int);
 
 	va_start(ptr, format);
 	tmp = malloc(sizeof(char) * 1024);
 	if (!format[i])
 		return (0);
-	while (i >= 0)
+	if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
+		return (-1);
+	while (format && format[i])
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '\0')
+			if (format[i + 1] == '%')
+				add_tmp_val(tmp, format[i], count), chr_count++;
+			else if (format[i + 1] == '\0')
 			{
 				free(tmp), print_stream(tmp, count), va_end(ptr);
 				return (-1);
 			}
 			else
 			{
+				function = get_print_func(format, (i + 1));
+				chr_count += function(ptr, tmp, count);
 			}
-		}
+			i++;
+		} else
+			add_tmp_val(tmp, format[i], count), chr_chount++;
+		i++, count = chr_count;
+		while (count > 1024)
+			count -= 1024;
 	}
+	print_stream(tmp, count), free(tmp), va_end(ptr);
+	return (chr_count);
 }
