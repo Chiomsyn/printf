@@ -1,11 +1,11 @@
 #include "main.h"
 /**
- * ev_print_func - returns the amount of identifiers.
+ * c_print_func - returns the amount of identifiers.
  * @s: argument indentifier
  * @index: index of argument identifier.
  * Return: amount of identifiers.
  */
-int ev_print_func(const char *s, int index)
+int c_print_func(const char *s, int index)
 {
 	print_t pr[] = {
 		{"c", print_chr}, {"s", print_str}, {"i", print_int},
