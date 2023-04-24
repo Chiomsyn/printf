@@ -25,5 +25,6 @@ int (*get_print_func(const char *n, int index))(va_list, char*, unsigned int);
 int print_chr(va_list ptr, char *tmp, unsigned int count);
 int print_str(va_list ptr, char *tmp, unsigned int count);
 unsigned int add_tmp_val(char *tmp, char c, unsigned int count);
+int print_int(va_list ptr, char *tmp, unsigned int count);
 
 #endif
