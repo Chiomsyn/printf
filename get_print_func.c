@@ -16,7 +16,7 @@ int (*get_print_func(const char *n, int index))(va_list, char*, unsigned int)
 
 	while (pt[i].sym)
 	{
-		if (n[index] == pt->sym[i])
+		if (n[index] == pt[i].sym[0])
 			break;
 		i++;
 	}
