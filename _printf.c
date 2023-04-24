@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _printf - prints the formated output of given data.
  * @format: input of strings
@@ -13,8 +12,7 @@ int _printf(const char *format, ...)
 	char *tmp;
 	int (*function)(va_list, char *, unsigned int);
 
-	va_start(ptr, format);
-	tmp = malloc(sizeof(char) * 1024);
+	va_start(ptr, format), tmp = malloc(sizeof(char) * 1024);
 	if (!format[i])
 		return (0);
 	if (!format || !tmp || (format[i] == '%' && !format[i + 1]))
@@ -23,25 +21,26 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '%')
-				add_tmp_val(tmp, format[i], count), chr_count++;
-			else if (format[i + 1] == '\0')
-			{
-				free(tmp), print_stream(tmp, count), va_end(ptr);
+			if (format[i + 1] == '\0')
+			{	free(tmp), print_stream(tmp, count), va_end(ptr);
 				return (-1);
 			}
 			else
-			{
-				function = get_print_func(format[i + 1]);
+			{	function = get_print_func(format, i + 1);
 				if (function == NULL)
 				{
-					add_tmp_val(tmp, format[i], count);
-				chr_count++, i--;
+					if (format[i + 1] == ' ' && !format[i + 2])
+						return (-1);
+					add_tmp_val(tmp, format[i], count), chr_count++, i--;
 				}
 				else
+				{
 					chr_count += function(ptr, tmp, count);
+					i += c_print_func(format, i + 1);
+				}
 			}	i++;
-		} else
+		}
+		else
 			add_tmp_val(tmp, format[i], count), chr_count++;
 		for (count = chr_count; count > 1024; count -= 1024)
 			;
