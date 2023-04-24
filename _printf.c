@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				function = get_print_func(format, i + 1);
+				function = get_print_func(format[i + 1]);
 				if (function == NULL)
 				{
 					add_tmp_val(tmp, format[i], count);
