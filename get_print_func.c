@@ -6,7 +6,7 @@
  * Return: pointer to a fuction.
  */
 
-int (*get_print_func(char *n))(va_list, char*, unsigned int)
+int (*get_print_func(char n))(va_list, char*, unsigned int)
 {
 	print_t pt[] = {
 		{"c", print_chr}, {"i", print_int},
