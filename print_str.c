@@ -10,7 +10,7 @@ int print_str(va_list ptr, char *tmp, unsigned int count)
 {
 	char *str;
 	unsigned int i;
-	char nill[] = "(nil)";
+	char nill[] = "(null)";
 
 	str = va_arg(ptr, char *);
 	if (str == NULL)
