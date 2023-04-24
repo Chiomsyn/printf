@@ -10,8 +10,15 @@ int print_str(va_list ptr, char *tmp, unsigned int count)
 {
 	char *str;
 	unsigned int i;
+	char nill[] = "(nil)";
 
 	str = va_arg(ptr, char *);
+	if (str == NULL)
+	{
+		for (i = 0; nill[i]; i++)
+			count = add_tmp_val(tmp, nill[i], count);
+		return (5);
+	}
 	for (i = 0; str[i]; i++)
 		count = add_tmp_val(tmp, str[i], count);
 	return (i);
