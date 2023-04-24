@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 	tmp = malloc(sizeof(char) * 1024);
 	if (!format[i])
 		return (0);
-	if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
+	if (!format || !tmp || (format[i] == '%' && !format[i + 1]))
 		return (-1);
 	while (format && format[i])
 	{
@@ -33,14 +33,20 @@ int _printf(const char *format, ...)
 			else
 			{
 				function = get_print_func(format, (i + 1));
-				chr_count += function(ptr, tmp, count);
+				if (function == NULL)
+				{
+					add_tmp_val(tmp, format[i], count);
+				chr_count++, i--;
+				}
+				else
+					chr_count += function(ptr, tmp, count);
 			}
 			i++;
 		} else
-			add_tmp_val(tmp, format[i], count), chr_chount++;
-		i++, count = chr_count;
-		while (count > 1024)
-			count -= 1024;
+			add_tmp_val(tmp, format[i], count), chr_count++;
+		for (count = chr_count; count > 1024; count -= 1024)
+			;
+		i++;
 	}
 	print_stream(tmp, count), free(tmp), va_end(ptr);
 	return (chr_count);
