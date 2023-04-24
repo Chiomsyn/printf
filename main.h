@@ -8,18 +8,19 @@
 /**
  * struct print_t - Struct for print functions
  *
- * @op: The type argument
+ * @sym: The type argument
  * @f: The function that points to printer funtion
  *
  * Description: struct that stores pointer to printer function
  */
 typedef struct print_t
 {
-	char *arg;
+	char *sym;
 	int (*f)(int a, int b);
 } type_print;
 
 int _printf(const char *format, ...);
 int print_stream(char *buf, unsigned int count);
+int (*get_print_func(const char *n, int index))(va_list, char*, unsigned int)
 
 #endif
