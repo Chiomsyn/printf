@@ -3,7 +3,7 @@
 /**
  * print_percnt - writes the character c to stdout
  * @a: input char
- * @buf: buffer pointer
+ * @tmp: buffer pointer
  * @i: index for buffer pointer
  * Return: On success 1.
  */
