@@ -28,4 +28,8 @@ unsigned int add_tmp_val(char *tmp, char c, unsigned int count);
 int print_int(va_list ptr, char *tmp, unsigned int count);
 int print_percnt(va_list a __attribute__((unused)), char *tmp, unsigned int i);
 int c_print_func(const char *s, int index);
+
+int print_binary(va_list types, char buffer[],
+	int flags, int width, int precision, int size);
+
 #endif
